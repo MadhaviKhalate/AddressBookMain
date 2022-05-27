@@ -32,7 +32,7 @@ internal class Program
                     p.addMultiContacts();
                     break;
                 case 6:
-                    //p.addMultiAddressBooks();
+                    p.addMultiAddressBooks();
                     break;
                 default:
                     Console.Write("Enter valid option.\n");

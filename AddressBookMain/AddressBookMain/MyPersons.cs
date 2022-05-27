@@ -153,5 +153,19 @@ namespace AddressBookMain
                 n--;
             }
         }
+        public void addMultiAddressBooks()
+        {
+            Console.WriteLine("How many address books you want to add: ");
+            int noOfBooks = Convert.ToInt32(Console.ReadLine());
+            while (noOfBooks > 0)
+            {
+                Console.WriteLine("Enter group name:");
+                string gName = Console.ReadLine();
+                MyPerson people = new MyPerson();
+                people.addMultiContacts();
+                group.Add(gName, Program.person.ToList());
+                noOfBooks--;
+            }
+        }
     }
 }
