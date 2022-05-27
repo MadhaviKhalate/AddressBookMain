@@ -25,7 +25,7 @@ internal class Program
                     //AddressBook.MyPerson.removeContact();
                     break;
                 case 4:
-                    //p.displayContacts();
+                    p.displayContacts();
                     break;
                 case 5:
                     //p.addMultiContacts();
