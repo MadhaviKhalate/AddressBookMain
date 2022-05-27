@@ -29,7 +29,7 @@ internal class Program
                     p.displayContacts();
                     break;
                 case 5:
-                    //p.addMultiContacts();
+                    p.addMultiContacts();
                     break;
                 case 6:
                     //p.addMultiAddressBooks();

@@ -143,5 +143,15 @@ namespace AddressBookMain
                 }
             }
         }
+        public void addMultiContacts()
+        {
+            Console.WriteLine("How many contacts you want to add:");
+            int n = Convert.ToInt32(Console.ReadLine());
+            while (n > 0)
+            {
+                createContacts();
+                n--;
+            }
+        }
     }
 }
