@@ -23,7 +23,7 @@ internal class Program
                     AddressBookMain.MyPerson.editContacts();
                     break;
                 case 3:
-                    //AddressBookMain.MyPerson.removeContact();
+                    AddressBookMain.MyPerson.removeContact();
                     break;
                 case 4:
                     p.displayContacts();
