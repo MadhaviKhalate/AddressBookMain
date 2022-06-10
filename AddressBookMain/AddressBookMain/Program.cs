@@ -6,14 +6,10 @@ internal class Program
     public static void Main(String[] args)
     {
         Console.WriteLine("1.Create Contact\n2.Edit Contact\n3.Delete Contact\n4.Display Contacts" +
-            "\n5.Add Multiple Contacts\n6.Add Multiple Address Books\n7.Exit\n");
+            "\n5.Add Multiple Contacts\n6.Add Multiple Address Books\n7.Search City or State");
         Console.WriteLine("Enter your choice:");
         int choice = Convert.ToInt32(Console.ReadLine());
-        AddressBookMain.MyPerson p = new AddressBookMain.MyPerson();
-        while (choice != 7)
-        {
-            Console.Clear();
-
+        MyPerson p = new MyPerson();
             switch (choice)
             {
                 case 1:
@@ -39,15 +35,13 @@ internal class Program
                 case 6:
                     p.addMultiAddressBooks();
                     break;
+                case 7:
+                    p.searchForCityOrState();
+                    break;
                 default:
                     Console.Write("Enter valid option.\n");
                     break;
             }
-            Console.WriteLine("1.Create Contact\n2.Edit Contact\n3.Delete Contact\n4.Display Contacts" +
-                "\n5.Add Multiple Contacts\n6.Add Multiple Address Books\n7.Exit\n");
-            Console.WriteLine("Enter your choice:");
-            choice = Convert.ToInt32(Console.ReadLine());
-        }
     }
 }
 

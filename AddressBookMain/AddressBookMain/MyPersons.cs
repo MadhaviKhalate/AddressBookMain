@@ -9,6 +9,8 @@ namespace AddressBookMain
     public class MyPerson
     {
         List<Contacts> group = new List<Contacts>();
+        Dictionary<string, List<Contacts>> book = new Dictionary<string, List<Contacts>>();
+
         Contacts contact;
         public void createContacts()
         {
@@ -146,7 +148,6 @@ namespace AddressBookMain
         }
         public void addMultiAddressBooks()
         {
-            Dictionary<string, List<Contacts>> book = new Dictionary<string, List<Contacts>>();
             Console.WriteLine("Enter the number of book you want to add: ");
             int userInput = Convert.ToInt32(Console.ReadLine());
             while (userInput > 0)
@@ -167,6 +168,48 @@ namespace AddressBookMain
                  + list.address + "\nCity: " + list.city + "\nCity: " + list.city + "\nZip Code: "
                  + list.zip + "\nPhone Number: " + list.phoneNo + "\nEmail: " + list.email + "\n");
                 }
+            }
+        }
+        public void searchForCityOrState()
+        {
+            addMultiAddressBooks();           
+            Console.WriteLine("1.Search contacts by city\n2.Search contacts by State");
+            Console.WriteLine("Enter your choice:");
+            int choice = Convert.ToInt32(Console.ReadLine());
+            switch (choice)
+            {
+                case 1:
+                    {
+                        Console.WriteLine("Enter a City Name to be Search: ");
+                        string searchCity = Console.ReadLine();
+                        foreach (var bookName in book)
+                        {
+                            Console.WriteLine("Group Name is :" + bookName.Key + "\n");
+                            foreach (var list in bookName.Value.FindAll(e => (e.city.Equals(searchCity))).ToList())
+                            {
+                                Console.WriteLine("First Name: " + list.fName + "\nLast Name: " + list.lName + "\nAddress: "
+                                + list.address + "\nCity: " + list.city + "\nState: " + list.state + "\nZip Code: "
+                                + list.zip + "\nPhone Number: " + list.phoneNo + "\nEmail: " + list.email + "\n");
+                            }
+                        }
+                        break;
+                    }
+                case 2:
+                    {
+                        Console.WriteLine("Enter a State Name to be Search: ");
+                        string searchState = Console.ReadLine();
+                        foreach (var bookName in book)
+                        {
+                            Console.WriteLine("Group Name is :" + bookName.Key + "\n");
+                            foreach (var list in bookName.Value.FindAll(e => (e.state.Equals(searchState))).ToList())
+                            {
+                                Console.WriteLine("First Name: " + list.fName + "\nLast Name: " + list.lName + "\nAddress: "
+                                + list.address + "\nCity: " + list.city + "\nState: " + list.state + "\nZip Code: "
+                                + list.zip + "\nPhone Number: " + list.phoneNo + "\nEmail: " + list.email + "\n");
+                            }
+                        }
+                        break;
+                    }
             }
         }
     }
