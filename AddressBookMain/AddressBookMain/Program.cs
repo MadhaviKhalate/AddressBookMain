@@ -17,13 +17,18 @@ internal class Program
             switch (choice)
             {
                 case 1:
-                    AddressBookMain.MyPerson.createContacts();
+                    p.createContacts();
+                    p.displayContacts();
                     break;
                 case 2:
-                    AddressBookMain.MyPerson.editContacts();
+                    p.createContacts();
+                    p.editContacts();
+                    p.displayContacts();
                     break;
                 case 3:
-                    AddressBookMain.MyPerson.removeContact();
+                    p.addMultiContacts();
+                    p.removeContact();
+                    p.displayContacts();
                     break;
                 case 4:
                     p.displayContacts();
@@ -38,7 +43,8 @@ internal class Program
                     Console.Write("Enter valid option.\n");
                     break;
             }
-            Console.WriteLine("1.Create Contact\n2.Edit Contact\n3.Delete Contact\n4.Display Contacts\n5.Add Multiple Contacts\n6.Add Multiple Address Books\n7.Exit\n");
+            Console.WriteLine("1.Create Contact\n2.Edit Contact\n3.Delete Contact\n4.Display Contacts" +
+                "\n5.Add Multiple Contacts\n6.Add Multiple Address Books\n7.Exit\n");
             Console.WriteLine("Enter your choice:");
             choice = Convert.ToInt32(Console.ReadLine());
         }
