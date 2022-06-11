@@ -201,7 +201,7 @@ namespace AddressBookMain
                         foreach (var bookName in book)
                         {
                             Console.WriteLine("Group Name is :" + bookName.Key + "\n");
-                            foreach (var list in bookName.Value.FindAll(e => (e.state.Equals(searchState))).ToList())
+                            foreach (var list in bookName.Value.FindAll(e => e.state.Equals(searchState)).ToList())
                             {
                                 Console.WriteLine("First Name: " + list.fName + "\nLast Name: " + list.lName + "\nAddress: "
                                 + list.address + "\nCity: " + list.city + "\nState: " + list.state + "\nZip Code: "
@@ -210,6 +210,58 @@ namespace AddressBookMain
                         }
                         break;
                     }
+            }
+        }
+        public void CityAndStateInDictionary()
+        {
+            List<Contacts> city = new List<Contacts>();
+            List<Contacts> state = new List<Contacts>();
+            Dictionary<string, List<Contacts>> cityDictionary = new Dictionary<string, List<Contacts>>();
+            Dictionary<string, List<Contacts>> stateDictionary = new Dictionary<string, List<Contacts>>();
+            addMultiAddressBooks();
+            Console.WriteLine("Enter a City Name to create key in dictionary: ");
+            string searchCity = Console.ReadLine();
+            foreach (var bookName in book)
+            {
+                foreach (var list in bookName.Value.FindAll(e => (e.city.Equals(searchCity))))
+                {
+                    if (list.city.Equals(searchCity))
+                    {
+                        city.Add(list);
+                    }
+                }
+            }
+            cityDictionary.Add(searchCity, city);
+
+            Console.WriteLine("Enter a State Name to create key in dictionary: ");
+            string searchState = Console.ReadLine();
+            foreach (var bookName in book)
+            {
+                foreach (var list in bookName.Value.FindAll(e => (e.state.Equals(searchState))))
+                {
+                    if (list.state.Equals(searchState))
+                    {
+                        state.Add(list);
+                    }
+                }
+            }
+            stateDictionary.Add(searchState, state);
+            //Display
+            Console.WriteLine("\nContacts in " + searchCity);
+            foreach (var City in cityDictionary)
+            {
+                foreach (var data in City.Value)
+                {
+                    Console.WriteLine("First Name: " + data.fName + "\nCity: " + data.city);
+                }
+            }
+            Console.WriteLine("\nContacts in " + searchState);
+            foreach (var State in stateDictionary)
+            {
+                foreach (var data in State.Value)
+                {
+                    Console.WriteLine("First Name: " + data.fName + "\nState: " + data.state);
+                }
             }
         }
     }

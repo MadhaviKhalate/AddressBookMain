@@ -6,7 +6,8 @@ internal class Program
     public static void Main(String[] args)
     {
         Console.WriteLine("1.Create Contact\n2.Edit Contact\n3.Delete Contact\n4.Display Contacts" +
-            "\n5.Add Multiple Contacts\n6.Add Multiple Address Books\n7.Search City or State");
+            "\n5.Add Multiple Contacts\n6.Add Multiple Address Books\n7.Search City or State" +
+            "\n8.To Dictionary for City and State");
         Console.WriteLine("Enter your choice:");
         int choice = Convert.ToInt32(Console.ReadLine());
         MyPerson p = new MyPerson();
@@ -38,7 +39,10 @@ internal class Program
                 case 7:
                     p.searchForCityOrState();
                     break;
-                default:
+                case 8:
+                    p.CityAndStateInDictionary();
+                break;
+            default:
                     Console.Write("Enter valid option.\n");
                     break;
             }
