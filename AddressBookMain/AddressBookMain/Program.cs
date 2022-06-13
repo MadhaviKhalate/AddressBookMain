@@ -7,7 +7,7 @@ internal class Program
     {
         Console.WriteLine("1.Create Contact\n2.Edit Contact\n3.Delete Contact\n4.Display Contacts" +
             "\n5.Add Multiple Contacts\n6.Add Multiple Address Books\n7.Search City or State" +
-            "\n8.To Dictionary for City and State");
+            "\n8.To Dictionary for City and State\n9.Read Write Operation on File");
         Console.WriteLine("Enter your choice:");
         int choice = Convert.ToInt32(Console.ReadLine());
         MyPerson p = new MyPerson();
@@ -41,6 +41,10 @@ internal class Program
                     break;
                 case 8:
                     p.CityAndStateInDictionary();
+                break;
+                case 9:
+                    p.WriteInTextFile();
+                    p.ReadFromTextFile();
                 break;
             default:
                     Console.Write("Enter valid option.\n");

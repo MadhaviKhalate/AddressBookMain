@@ -9,7 +9,12 @@ namespace AddressBookMain
     public class MyPerson
     {
         List<Contacts> group = new List<Contacts>();
-        Dictionary<string, List<Contacts>> book = new Dictionary<string, List<Contacts>>();
+        List<Contacts> city = new List<Contacts>();
+        List<Contacts> state = new List<Contacts>();
+        Dictionary<string, List<Contacts>> book = new Dictionary<string, List<Contacts>>(); 
+        Dictionary<string, List<Contacts>> cityDictionary = new Dictionary<string, List<Contacts>>();
+        Dictionary<string, List<Contacts>> stateDictionary = new Dictionary<string, List<Contacts>>();
+
 
         Contacts contact;
         public void createContacts()
@@ -61,7 +66,7 @@ namespace AddressBookMain
             foreach (var details in group)
             {
                 Console.WriteLine("First Name: " + details.fName + "\nLast Name: " + details.lName + "\nAddress: "
-                + details.address + "\nCity: " + details.city + "\nCity: " + details.city + "\nZip Code: "
+                + details.address + "\nCity: " + details.city + "\nState: " + details.state + "\nZip Code: "
                 + details.zip + "\nPhone Number: " + details.phoneNo + "\nEmail: " + details.email + "\n");
             }
             if (group.Count == 0)
@@ -214,10 +219,6 @@ namespace AddressBookMain
         }
         public void CityAndStateInDictionary()
         {
-            List<Contacts> city = new List<Contacts>();
-            List<Contacts> state = new List<Contacts>();
-            Dictionary<string, List<Contacts>> cityDictionary = new Dictionary<string, List<Contacts>>();
-            Dictionary<string, List<Contacts>> stateDictionary = new Dictionary<string, List<Contacts>>();
             int countCity = 0, countState = 0;
             addMultiAddressBooks();
             Console.WriteLine("Enter a City Name to create key in dictionary: ");
@@ -269,6 +270,33 @@ namespace AddressBookMain
                 }
             }
             Console.WriteLine("Number of Contacts in " + searchState + ": " + countState);
+        }
+        
+        public void WriteInTextFile()
+        {
+            string file = @"D:\BridgeLabzFelloship\AddressBookMain\AddressBookMain\AddressBookMain\ContactInfo.txt";
+            using StreamWriter writer = File.AppendText(file);
+            {
+                Console.WriteLine("First Name, LastName, Address, City, State, Zip Code, Phone Number, Email");
+                writer.WriteLine(Console.ReadLine());
+                writer.Close();
+            }
+        }
+        public void ReadFromTextFile()
+        {
+            string file = @"D:\BridgeLabzFelloship\AddressBookMain\AddressBookMain\AddressBookMain\ContactInfo.txt";
+            string[] reader = File.ReadAllLines(file);
+            string[] array = { "First Name", "LastName", "Address", "City", "State", "Zip Code", "Phone Number", "Email" };
+
+            for (int i = 0; i < reader.Length; i++)
+            {
+                string[] details = reader[i].Split(",");
+                for (int j = 0; j < details.Length; j++)
+                {
+                    Console.WriteLine(array[j] + ": " + details[j]);
+                }
+                Console.WriteLine();
+            }
         }
     }
 }
