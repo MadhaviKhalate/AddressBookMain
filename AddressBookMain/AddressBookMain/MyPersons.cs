@@ -298,5 +298,29 @@ namespace AddressBookMain
                 Console.WriteLine();
             }
         }
+        public void WriteIntoCSVFile()
+        {
+            string path = @"D:\BridgeLabzFelloship\AddressBookMain\AddressBookMain\AddressBookMain\ContactInfoCSV.csv";
+            StringBuilder createfile = new StringBuilder();
+            Console.WriteLine("First Name, LastName, Address, City, State, Zip Code, Phone Number, Email");
+            createfile.AppendLine(Console.ReadLine());
+            File.AppendAllText(path, createfile.ToString());
+        }
+        public void ReadFromCSVFile()
+        {
+            string path = @"D:\BridgeLabzFelloship\AddressBookMain\AddressBookMain\AddressBookMain\ContactInfoCSV.csv";
+            string[] contactFile = File.ReadAllLines(path);
+
+            string[] array = { "First Name", "LastName", "Address", "City", "State", "Zip Code", "Phone Number", "Email" };
+            foreach (string line in contactFile)
+            {
+                string[] data = line.Split(",");
+                for (int i = 0; i < data.Length; i++)
+                {
+                    Console.WriteLine(array[i] + ": " + data[i]);
+                }
+                Console.WriteLine();
+            }
+        }
     }
 }
