@@ -3,15 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+
 
 namespace AddressBookMain
 {
-    public class MyPerson
+    internal class MyPerson
     {
         List<Contacts> group = new List<Contacts>();
         List<Contacts> city = new List<Contacts>();
         List<Contacts> state = new List<Contacts>();
-        Dictionary<string, List<Contacts>> book = new Dictionary<string, List<Contacts>>(); 
+        Dictionary<string, List<Contacts>> book = new Dictionary<string, List<Contacts>>();
         Dictionary<string, List<Contacts>> cityDictionary = new Dictionary<string, List<Contacts>>();
         Dictionary<string, List<Contacts>> stateDictionary = new Dictionary<string, List<Contacts>>();
 
@@ -177,7 +179,7 @@ namespace AddressBookMain
         }
         public void searchForCityOrState()
         {
-            addMultiAddressBooks();           
+            addMultiAddressBooks();
             Console.WriteLine("1.Search contacts by city\n2.Search contacts by State");
             Console.WriteLine("Enter your choice:");
             int choice = Convert.ToInt32(Console.ReadLine());
@@ -250,7 +252,7 @@ namespace AddressBookMain
                 }
             }
             stateDictionary.Add(searchState, state);
-          
+
             Console.WriteLine("\nContacts in " + searchCity);
             foreach (var City in cityDictionary)
             {
@@ -271,7 +273,7 @@ namespace AddressBookMain
             }
             Console.WriteLine("Number of Contacts in " + searchState + ": " + countState);
         }
-        
+
         public void WriteInTextFile()
         {
             string file = @"D:\BridgeLabzFelloship\AddressBookMain\AddressBookMain\AddressBookMain\ContactInfo.txt";
@@ -320,6 +322,32 @@ namespace AddressBookMain
                     Console.WriteLine(array[i] + ": " + data[i]);
                 }
                 Console.WriteLine();
+            }
+        }
+        public void JSONSerialization()
+        {
+            string path = @"D:\BridgeLabzFelloship\AddressBookMain\AddressBookMain\AddressBookMain\ContactInfo.json";
+            addMultiAddressBooks();
+            var json = JsonConvert.SerializeObject(book);
+            File.WriteAllText(path, json);
+        }
+        public void JSONDeserialization()
+        {
+            string path = @"D:\BridgeLabzFelloship\AddressBookMain\AddressBookMain\AddressBookMain\ContactInfo.json";
+            using StreamReader reader = new StreamReader(path);
+            {
+                string json = reader.ReadToEnd();
+                var jsonfile = JsonConvert.DeserializeObject<Dictionary<string, List<Contacts>>>(json);
+
+                foreach (var details in jsonfile)
+                {
+                    foreach (var data in details.Value)
+                    {
+                        Console.WriteLine("First Name: " + data.fName + "\nLast Name: " + data.lName + "\nAddress: "
+                        + data.address + "\nCity: " + data.city + "\nState: " + data.state + "\nZip Code: "
+                        + data.zip + "\nPhone Number: " + data.phoneNo + "\nEmail: " + data.email + "\n");
+                    }
+                }
             }
         }
     }
